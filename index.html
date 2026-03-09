@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>Tegenpartij Schotland Tour 2026</title>
+
+<style>
+
+.rang{
+font-weight:bold;
+}
+
+.leader{
+background:#FFD700;
+font-weight:bold;
+}
+
+body{
+font-family:Arial, Helvetica, sans-serif;
+background:#0b3d2e;
+color:white;
+text-align:center;
+margin:0;
+}
+
+.topbar{
+position:fixed;
+top:10px;
+left:10px;
+}
+
+.logo{
+width:300px;
+}
+
+h1{
+margin:10px;
+}
+
+.container{
+width:90%;
+max-width:900px;
+margin:auto;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+background:white;
+color:black;
+border-radius:8px;
+overflow:hidden;
+}
+
+th{
+background:#1b5e20;
+color:white;
+padding:10px;
+}
+
+td{
+padding:10px;
+border-bottom:1px solid #ddd;
+text-align:center;
+}
+
+input{
+width:60px;
+text-align:center;
+padding:4px;
+}
+
+.rang{
+font-weight:bold;
+}
+
+.sectiontitle{
+margin-top:40px;
+font-size:22px;
+}
+
+button{
+margin:10px;
+padding:10px 18px;
+font-size:16px;
+cursor:pointer;
+}
+
+.qr{
+margin-top:40px;
+background:white;
+color:black;
+padding:20px;
+border-radius:8px;
+}
+
+.footer{
+margin-top:40px;
+font-size:12px;
+opacity:0.7;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<header class="topbar">
+
+<img src="logo.png" class="logo">
+
+<h3>8 spelers • 3 wedstrijddagen • 2026</h3>
+
+</header>
+
+<div class="container">
+
+<h2>Leaderboard</h2>
+
+<table id="leaderboard">
+
+<tr>
+<th>Rang</th>
+<th>Speler</th>
+<th>Dag 1</th>
+<th>Dag 2</th>
+<th>Dag 3</th>
+<th>Totaal</th>
+</tr>
+
+<tr>
+<td class="rang"></td>
+<td>Han</td>
+<td><input type="number"></td>
+<td><input type="number"></td>
+<td><input type="number"></td>
+<td class="total">0</td>
+</tr>
+
+<tr>
+<td class="rang"></td>
+<td>Hans</td>
+<td><input type="number"></td>
+<td><input type="number"></td>
+<td><input type="number"></td>
+<td class="total">0</td>
+</tr>
+
+<tr>
+<td class="rang"></td>
+<td>Johan</td>
+<td><input type="number"></td>
+<td><input type="number"></td>
+<td><input type="number"></td>
+<td class="total">0</td>
+</tr>
+
+<tr>
+<td class="rang"></td>
+<td>Marian</td>
+<td><input type="number"></td>
+<td><input type="number"></td>
+<td><input type="number"></td>
+<td class="total">0</td>
+</tr>
+
+<tr>
+<td class="rang"></td>
+<td>Carolien</td>
+<td><input type="number"></td>
+<td><input type="number"></td>
+<td><input type="number"></td>
+<td class="total">0</td>
+</tr>
+
+<tr>
+<td class="rang"></td>
+<td>José</td>
+<td><input type="number"></td>
+<td><input type="number"></td>
+<td><input type="number"></td>
+<td class="total">0</td>
+</tr>
+
+<tr>
+<td class="rang"></td>
+<td>Tonny Nijboer</td>
+<td><input type="number"></td>
+<td><input type="number"></td>
+<td><input type="number"></td>
+<td class="total">0</td>
+</tr>
+
+<tr>
+<td class="rang"></td>
+<td>Jan Stuiver</td>
+<td><input type="number"></td>
+<td><input type="number"></td>
+<td><input type="number"></td>
+<td class="total">0</td>
+</tr>
+
+</table>
+
+
+<h2 class="sectiontitle">⛳ Nearest to the Pin</h2>
+
+<table>
+
+<tr>
+<th>Hole</th>
+<th>Speler</th>
+<th>Afstand (cm)</th>
+</tr>
+
+<tr>
+<td>Hole 3</td>
+<td><input></td>
+<td><input type="number"></td>
+</tr>
+
+<tr>
+<td>Hole 7</td>
+<td><input></td>
+<td><input type="number"></td>
+</tr>
+
+<tr>
+<td>Hole 12</td>
+<td><input></td>
+<td><input type="number"></td>
+</tr>
+
+<tr>
+<td>Hole 17</td>
+<td><input></td>
+<td><input type="number"></td>
+</tr>
+
+</table>
+
+
+<audio id="muziek" src="schotland_muziek.mp3" loop autoplay></audio>
+
+<button onclick="toggleMuziek()">🎵 Muziek aan/uit</button>
+
+
+<div class="footer">
+
+Tegenpartij Schotland Tour 2026
+
+</div>
+
+</div>
+
+<script>
+
+let inputs = document.querySelectorAll("#leaderboard input");
+
+inputs.forEach(input=>{
+input.addEventListener("input",update);
+});
+
+function update(){
+
+let rows = document.querySelectorAll("#leaderboard tr");
+
+let data=[];
+
+for(let i=1;i<rows.length;i++){
+
+let inputs = rows[i].querySelectorAll("input");
+
+let total=0;
+
+inputs.forEach(input=>{
+total += Number(input.value);
+});
+
+rows[i].querySelector(".total").innerText=total;
+
+let speler = rows[i].children[1].innerText;
+
+data.push({
+row:rows[i],
+speler:speler,
+score:total
+})
+
+}
+
+data.sort((a,b)=>a.score-b.score);
+
+data.forEach((item,index)=>{
+
+item.row.querySelector(".rang").innerText=index+1;
+
+item.row.classList.remove("leader");
+
+if(index===0){
+item.row.classList.add("leader");
+}
+
+document.querySelector("#leaderboard").appendChild(item.row);
+
+});
+
+save();
+
+}
+
+function save(){
+
+let values=[];
+
+document.querySelectorAll("input").forEach(input=>{
+values.push(input.value);
+});
+
+localStorage.setItem("scores",JSON.stringify(values));
+
+}
+
+function load(){
+
+let values = JSON.parse(localStorage.getItem("scores"));
+
+if(!values) return;
+
+document.querySelectorAll("input").forEach((input,i)=>{
+input.value = values[i];
+});
+
+update();
+
+}
+
+load();
+
+function toggleMuziek(){
+
+let audio = document.getElementById("muziek");
+
+if(audio.paused){
+audio.play();
+}else{
+audio.pause();
+}
+
+}
+
+</script>
+
+</body>
+</html>

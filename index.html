@@ -254,7 +254,7 @@ function update(){
     let speler = rows[i].children[1].innerText;
     data.push({row:rows[i], speler:speler, score:total});
   }
-  data.sort((a,b)=>a.score-b.score);
+data.sort((a,b)=>b.score-a.score);
   data.forEach((item,index)=>{
     item.row.querySelector(".rang").innerText=index+1;
     item.row.classList.remove("leader");

@@ -240,16 +240,26 @@ button{
 </div>
 
 <script>
+let timeout; // één timer voor alle inputs
 let inputs = document.querySelectorAll("#leaderboard input");
-inputs.forEach(input=>{ input.addEventListener("input",update); });
+inputs.forEach(input=>{
+    input.addEventListener("input", ()=>{
+        clearTimeout(timeout);      // reset de timer bij elke toets
+        timeout = setTimeout(update, 2000); // update 2000ms na laatste toets
+    });
+});
 
 function update(){
   let rows = document.querySelectorAll("#leaderboard tr");
   let data=[];
   for(let i=1;i<rows.length;i++){
     let inputs = rows[i].querySelectorAll("input");
-    let total=0;
-    inputs.forEach(input=>{ total += Number(input.value); });
+let total=0;
+inputs.forEach(input=>{
+    if(input.value !== "") {        // alleen bij niet-lege waarde
+        total += Number(input.value);
+    }
+});
     rows[i].querySelector(".total").innerText=total;
     let speler = rows[i].children[1].innerText;
     data.push({row:rows[i], speler:speler, score:total});

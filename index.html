@@ -192,11 +192,11 @@ button{
 .flightbtn{
   display:inline-block;
   font-size:50px;
-  padding:14px 30px;
+  padding:28px 60px;
   background:#FFD700;
   color:#0b3d2e;
   text-decoration:none;
-  border-radius:12px;
+  border-radius:24px;
   font-weight:bold;
   box-shadow: 0 4px 10px rgba(0,0,0,0.4);
   margin-top:10px;
@@ -208,6 +208,30 @@ button{
   
 </head>
 
+<script>
+function save(){
+  let values = [];
+  document.querySelectorAll("input").forEach(input => {
+    values.push(input.value);
+  });
+  localStorage.setItem("flights", JSON.stringify(values));
+}
+
+function load(){
+  let values = JSON.parse(localStorage.getItem("flights"));
+  if(!values) return;
+  document.querySelectorAll("input").forEach((input, i) => {
+    input.value = values[i] || "";
+  });
+}
+
+document.querySelectorAll("input").forEach(input => {
+  input.addEventListener("input", save);
+});
+
+load();
+</script>
+  
 <body>
 
 <div class="topbar">

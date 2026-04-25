@@ -183,6 +183,291 @@ button{
   }
 }
 </style>
+
+
+Top — je zit goed 👍
+Je hoeft nu alleen nog 1 ding aan te passen in je HTML + klein beetje CSS.
+
+🔧 STAP 1 — pas je .topbar aan (HEEL BELANGRIJK)
+Je hebt nu:
+
+.topbar{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+👉 Dat zorgt ervoor dat alles onder elkaar staat.
+
+Vervang dit door:
+.topbar{
+  position:sticky;
+  top:0;
+  background: linear-gradient(to right, #0b3d2e, #0f5e3b);
+  padding:10px 15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:1000;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+}
+🔧 STAP 2 — zet knop naast logo
+Zoek in je HTML dit:
+
+<div class="topbar">
+  <img src="logo.png" class="logo">
+  <h3>8 spelers • 3 wedstrijddagen • 2026</h3>
+</div>
+✅ Vervang dat door:
+<div class="topbar">
+
+  <img src="logo.png" class="logo">
+
+  <a href="flights.html">
+    <button style="font-size:14px; padding:8px 12px;">
+      🏌️ Flights
+    </button>
+  </a>
+
+</div>
+
+<h3 style="margin-top:5px;">
+  8 spelers • 3 wedstrijddagen • 2026
+</h3>
+🔧 STAP 3 — maak logo écht klein
+Je hebt nu:
+
+.logo{
+  max-width:30%;
+}
+👉 Dat is nog relatief groot op mobiel
+
+Zet dit:
+.logo{
+  width:80px;
+}
+💾 Daarna
+Commit changes
+
+F5 op je site
+
+🎯 Resultaat
+Bovenin krijg je:
+
+[ logo ]         [ 🏌️ Flights ]
+        8 spelers • 3 wedstrijddagen
+💡 Als je nóg strakker wilt (optioneel)
+Zeg het even, dan maak ik:
+
+knop als mooi icoon (zonder lelijke standaard button)
+
+of vaste header zoals echte apps
+
+Maar dit werkt nu 100% 👍
+
+
+nee, ik heb nu: /* Topbar */
+.topbar{
+  position:sticky;
+  top:0;
+  background: linear-gradient(to right, #0b3d2e, #0f5e3b);
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  z-index:1000;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+
+Helder — dan hoef je niet alles om te gooien 👍
+Je hoeft alleen je topbar iets slimmer op te bouwen.
+
+Je probleem nu:
+👉 flex-direction: column → alles staat onder elkaar
+👉 jij wil: logo links, knop rechts
+
+✅ OPLOSSING (werkt met jouw huidige setup)
+🔧 STAP 1 — LAAT je .topbar zoals hij is
+👉 dus NIET aanpassen 👍
+
+🔧 STAP 2 — voeg een “rij” toe binnen de topbar
+Zoek dit in je HTML:
+
+<div class="topbar">
+  <img src="logo.png" class="logo">
+  <h3>8 spelers • 3 wedstrijddagen • 2026</h3>
+</div>
+✅ Vervang dat door dit:
+<div class="topbar">
+
+  <div style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+
+    <img src="logo.png" class="logo">
+
+    <a href="flights.html">
+      <button style="font-size:14px; padding:8px 12px;">
+        🏌️ Flights
+      </button>
+    </a>
+
+  </div>
+
+  <h3>8 spelers • 3 wedstrijddagen • 2026</h3>
+
+</div>
+💡 Waarom dit werkt
+.topbar blijft kolom (dus tekst netjes onder)
+
+binnenin maak je 1 rij (flex):
+
+links = logo
+
+rechts = knop
+
+🔧 STAP 3 — logo kleiner (belangrijk)
+Zet dit:
+
+.logo{
+  width:70px;
+}
+💾 Daarna
+Commit changes
+
+F5
+
+🎯 Resultaat
+Je krijgt:
+
+[ logo ]        [ 🏌️ Flights ]
+      8 spelers • 3 wedstrijddagen
+Als je wilt maak ik die knop nog mooier (meer “golfstijl” i.p.v. standaard button) ⛳
+
+
+logo staat nu alleen helemaal links, en flights rechts en veel te klein. graag oplossen
+
+Goed dat je dit zegt — dit is puur een layout + knop styling issue, makkelijk netjes te fixen 👍
+
+Je probleem nu:
+
+logo plakt links ❌
+
+knop is klein en saai ❌
+
+geen mooie balans ❌
+
+We maken het strak, gecentreerd en groter 👇
+
+✅ STAP 1 — vervang je topbar HTML door dit
+Zoek je huidige topbar en vervang met:
+
+<div class="topbar">
+
+  <div class="toprow">
+
+    <img src="logo.png" class="logo">
+
+    <a href="flights.html" class="flightbtn">
+      🏌️ Flights
+    </a>
+
+  </div>
+
+  <h3>8 spelers • 3 wedstrijddagen • 2026</h3>
+
+</div>
+✅ STAP 2 — voeg deze CSS toe (HEEL BELANGRIJK)
+Plak dit in je <style>:
+
+.toprow{
+  width:100%;
+  max-width:900px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  width:70px;
+}
+
+.flightbtn{
+  background:#FFD700;
+  color:black;
+  padding:10px 16px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+  font-size:16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+/* mobiel iets groter maken */
+@media screen and (max-width:600px){
+  .logo{
+    width:60px;
+  }
+
+  .flightbtn{
+    font-size:15px;
+    padding:9px 14px;
+  }
+}
+🔥 Resultaat
+Je krijgt nu:
+
+      [logo]        [ 🏌️ Flights ]
+      8 spelers • 3 wedstrijddagen
+✔ mooi gecentreerd
+✔ knop duidelijk zichtbaar
+✔ mobiel vriendelijk
+
+💡 Als je hem nóg strakker wilt
+Ik kan hem ook maken als:
+
+alleen een icoon (⚡ minimalistisch)
+
+of vaste balk zoals een app
+
+Maar dit is nu precies wat je zoekt 👍
+
+Je hebt de limiet van Free voor chats met bijlagen bereikt
+Upgrade nu, wacht tot 21:57 om bestanden te blijven gebruiken of chat verder zonder bestanden.
+
+Nieuwe chat
+
+Upgraden
+bijvoorbeeld tussen style en head?
+
+
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
+
+<div class="topbar">
+
+
+
+  <div class="toprow">
+
+
+
+    <img src="logo.png" class="logo">
+
+
+
+    <a href="flights.html" class="flightbtn">
+
+      🏌️ Flights
+
+
+
+  
 </head>
 
 <body>

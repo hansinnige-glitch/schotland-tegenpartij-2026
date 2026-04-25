@@ -1,3 +1,6 @@
+Ja — je script stond **te vroeg** én je inputs hadden geen `id`. Gebruik deze hele nieuwe `flights.html`:
+
+```html
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -39,6 +42,7 @@ input{
   margin:5px;
   border-radius:6px;
   border:2px solid #1b5e20;
+  font-size:16px;
 }
 
 .back{
@@ -54,22 +58,6 @@ input{
 </style>
 </head>
 
-<script>
-for(let i = 1; i <= 8; i++){
-  let input = document.getElementById("player" + i);
-
-  if(input){
-    // laden
-    input.value = localStorage.getItem("player" + i) || "";
-
-    // opslaan
-    input.addEventListener("input", function(){
-      localStorage.setItem("player" + i, input.value);
-    });
-  }
-}
-</script>
-  
 <body>
 
 <div class="container">
@@ -80,75 +68,90 @@ for(let i = 1; i <= 8; i++){
 
 <div class="flight">
 <b>Flight 1 – 12:24</b><br>
-<input placeholder="Speler 1">
-<input placeholder="Speler 2">
-<input placeholder="Speler 3">
-<input placeholder="Speler 4">
+<input id="d1f1p1" placeholder="Speler 1">
+<input id="d1f1p2" placeholder="Speler 2">
+<input id="d1f1p3" placeholder="Speler 3">
+<input id="d1f1p4" placeholder="Speler 4">
 </div>
 
 <div class="flight">
 <b>Flight 2 – 12:34</b><br>
-<input placeholder="Speler 5">
-<input placeholder="Speler 6">
-<input placeholder="Speler 7">
-<input placeholder="Speler 8">
+<input id="d1f2p1" placeholder="Speler 5">
+<input id="d1f2p2" placeholder="Speler 6">
+<input id="d1f2p3" placeholder="Speler 7">
+<input id="d1f2p4" placeholder="Speler 8">
 </div>
 
 <h2>📅 Dag 2</h2>
 
 <div class="flight">
 <b>Flight 1 – 11:12</b><br>
-<input placeholder="Speler 1">
-<input placeholder="Speler 2">
-<input placeholder="Speler 3">
-<input placeholder="Speler 4">
+<input id="d2f1p1" placeholder="Speler 1">
+<input id="d2f1p2" placeholder="Speler 2">
+<input id="d2f1p3" placeholder="Speler 3">
+<input id="d2f1p4" placeholder="Speler 4">
 </div>
 
 <div class="flight">
 <b>Flight 2 – 11:22</b><br>
-<input placeholder="Speler 5">
-<input placeholder="Speler 6">
-<input placeholder="Speler 7">
-<input placeholder="Speler 8">
+<input id="d2f2p1" placeholder="Speler 5">
+<input id="d2f2p2" placeholder="Speler 6">
+<input id="d2f2p3" placeholder="Speler 7">
+<input id="d2f2p4" placeholder="Speler 8">
 </div>
 
 <h2>📅 Dag 3</h2>
 
 <div class="flight">
 <b>⛳ 07:40 (Hole 10)</b><br>
-<input placeholder="Speler 1">
-<input placeholder="Speler 2">
-<input placeholder="Speler 3">
-<input placeholder="Speler 4">
+<input id="d3f1p1" placeholder="Speler 1">
+<input id="d3f1p2" placeholder="Speler 2">
+<input id="d3f1p3" placeholder="Speler 3">
+<input id="d3f1p4" placeholder="Speler 4">
 </div>
 
 <div class="flight">
 <b>⛳ 07:50 (Hole 10)</b><br>
-<input placeholder="Speler 5">
-<input placeholder="Speler 6">
-<input placeholder="Speler 7">
-<input placeholder="Speler 8">
+<input id="d3f2p1" placeholder="Speler 5">
+<input id="d3f2p2" placeholder="Speler 6">
+<input id="d3f2p3" placeholder="Speler 7">
+<input id="d3f2p4" placeholder="Speler 8">
 </div>
 
 <div class="flight">
 <b>⛳ 09:40 (Hole 1)</b><br>
-<input placeholder="Speler 1">
-<input placeholder="Speler 2">
-<input placeholder="Speler 3">
-<input placeholder="Speler 4">
+<input id="d3f3p1" placeholder="Speler 1">
+<input id="d3f3p2" placeholder="Speler 2">
+<input id="d3f3p3" placeholder="Speler 3">
+<input id="d3f3p4" placeholder="Speler 4">
 </div>
 
 <div class="flight">
 <b>⛳ 09:50 (Hole 1)</b><br>
-<input placeholder="Speler 5">
-<input placeholder="Speler 6">
-<input placeholder="Speler 7">
-<input placeholder="Speler 8">
+<input id="d3f4p1" placeholder="Speler 5">
+<input id="d3f4p2" placeholder="Speler 6">
+<input id="d3f4p3" placeholder="Speler 7">
+<input id="d3f4p4" placeholder="Speler 8">
 </div>
 
 <a href="index.html" class="back">⬅ Terug naar leaderboard</a>
 
 </div>
 
+<script>
+const inputs = document.querySelectorAll("input");
+
+inputs.forEach(function(input){
+  input.value = localStorage.getItem(input.id) || "";
+
+  input.addEventListener("input", function(){
+    localStorage.setItem(input.id, input.value);
+  });
+});
+</script>
+
 </body>
 </html>
+```
+
+Daarna: **alles vervangen → commit changes → pagina refreshen**.

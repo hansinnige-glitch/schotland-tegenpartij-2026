@@ -209,27 +209,14 @@ button{
 </head>
 
 <script>
-function save(){
-  let values = [];
-  document.querySelectorAll("input").forEach(input => {
-    values.push(input.value);
-  });
-  localStorage.setItem("flights", JSON.stringify(values));
+function savePlayers(){
+  localStorage.setItem("player1", document.getElementById("player1").value);
+  localStorage.setItem("player2", document.getElementById("player2").value);
 }
 
-function load(){
-  let values = JSON.parse(localStorage.getItem("flights"));
-  if(!values) return;
-  document.querySelectorAll("input").forEach((input, i) => {
-    input.value = values[i] || "";
-  });
-}
-
-document.querySelectorAll("input").forEach(input => {
-  input.addEventListener("input", save);
-});
-
-load();
+// opslaan bij typen
+document.getElementById("player1").addEventListener("input", savePlayers);
+document.getElementById("player2").addEventListener("input", savePlayers);
 </script>
   
 <body>

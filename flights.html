@@ -54,6 +54,22 @@ input{
 </style>
 </head>
 
+<script>
+for(let i = 1; i <= 8; i++){
+  let input = document.getElementById("player" + i);
+
+  if(input){
+    // laden
+    input.value = localStorage.getItem("player" + i) || "";
+
+    // opslaan
+    input.addEventListener("input", function(){
+      localStorage.setItem("player" + i, input.value);
+    });
+  }
+}
+</script>
+  
 <body>
 
 <div class="container">

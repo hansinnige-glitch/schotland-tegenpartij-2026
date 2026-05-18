@@ -1,10 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
 <title>Tee Times & Flights</title>
-
 <style>
 body{
   font-family:Arial, Helvetica, sans-serif;
@@ -13,19 +11,16 @@ body{
   text-align:center;
   margin:0;
 }
-
 .container{
   width:95%;
   max-width:900px;
   margin:auto;
   padding:20px;
 }
-
 h2{
   margin-top:30px;
   color:#FFD700;
 }
-
 .flight{
   background:white;
   color:black;
@@ -33,7 +28,6 @@ h2{
   padding:15px;
   margin:15px 0;
 }
-
 input{
   width:80%;
   padding:8px;
@@ -42,7 +36,6 @@ input{
   border:2px solid #1b5e20;
   font-size:16px;
 }
-
 .back{
   margin-top:20px;
   display:inline-block;
@@ -53,103 +46,164 @@ input{
   text-decoration:none;
   font-weight:bold;
 }
+
+/* Sync status */
+#syncstatus{
+  font-size:13px;
+  margin:10px 0 0;
+  opacity:0.85;
+  min-height:18px;
+}
 </style>
 </head>
-
 <body>
-
 <div class="container">
-
 <h1>🏌️ Tee Times & Flights</h1>
+<div id="syncstatus">⏳ Gegevens laden...</div>
 
 <h2>📅 Dag 1</h2>
-
 <div class="flight">
 <b>Flight 1 – 12:24</b><br>
-<input id="d1f1p1" placeholder="Speler 1">
-<input id="d1f1p2" placeholder="Speler 2">
-<input id="d1f1p3" placeholder="Speler 3">
-<input id="d1f1p4" placeholder="Speler 4">
+<input id="d1f1p1" data-key="d1f1p1" placeholder="Speler 1">
+<input id="d1f1p2" data-key="d1f1p2" placeholder="Speler 2">
+<input id="d1f1p3" data-key="d1f1p3" placeholder="Speler 3">
+<input id="d1f1p4" data-key="d1f1p4" placeholder="Speler 4">
 </div>
-
 <div class="flight">
 <b>Flight 2 – 12:34</b><br>
-<input id="d1f2p1" placeholder="Speler 5">
-<input id="d1f2p2" placeholder="Speler 6">
-<input id="d1f2p3" placeholder="Speler 7">
-<input id="d1f2p4" placeholder="Speler 8">
+<input id="d1f2p1" data-key="d1f2p1" placeholder="Speler 5">
+<input id="d1f2p2" data-key="d1f2p2" placeholder="Speler 6">
+<input id="d1f2p3" data-key="d1f2p3" placeholder="Speler 7">
+<input id="d1f2p4" data-key="d1f2p4" placeholder="Speler 8">
 </div>
 
 <h2>📅 Dag 2</h2>
-
 <div class="flight">
 <b>Flight 1 – 11:12</b><br>
-<input id="d2f1p1" placeholder="Speler 1">
-<input id="d2f1p2" placeholder="Speler 2">
-<input id="d2f1p3" placeholder="Speler 3">
-<input id="d2f1p4" placeholder="Speler 4">
+<input id="d2f1p1" data-key="d2f1p1" placeholder="Speler 1">
+<input id="d2f1p2" data-key="d2f1p2" placeholder="Speler 2">
+<input id="d2f1p3" data-key="d2f1p3" placeholder="Speler 3">
+<input id="d2f1p4" data-key="d2f1p4" placeholder="Speler 4">
 </div>
-
 <div class="flight">
 <b>Flight 2 – 11:22</b><br>
-<input id="d2f2p1" placeholder="Speler 5">
-<input id="d2f2p2" placeholder="Speler 6">
-<input id="d2f2p3" placeholder="Speler 7">
-<input id="d2f2p4" placeholder="Speler 8">
+<input id="d2f2p1" data-key="d2f2p1" placeholder="Speler 5">
+<input id="d2f2p2" data-key="d2f2p2" placeholder="Speler 6">
+<input id="d2f2p3" data-key="d2f2p3" placeholder="Speler 7">
+<input id="d2f2p4" data-key="d2f2p4" placeholder="Speler 8">
 </div>
 
 <h2>📅 Dag 3</h2>
-
 <div class="flight">
 <b>⛳ 07:40 (Hole 10)</b><br>
-<input id="d3f1p1" placeholder="Speler 1">
-<input id="d3f1p2" placeholder="Speler 2">
-<input id="d3f1p3" placeholder="Speler 3">
-<input id="d3f1p4" placeholder="Speler 4">
+<input id="d3f1p1" data-key="d3f1p1" placeholder="Speler 1">
+<input id="d3f1p2" data-key="d3f1p2" placeholder="Speler 2">
+<input id="d3f1p3" data-key="d3f1p3" placeholder="Speler 3">
+<input id="d3f1p4" data-key="d3f1p4" placeholder="Speler 4">
 </div>
-
 <div class="flight">
 <b>⛳ 07:50 (Hole 10)</b><br>
-<input id="d3f2p1" placeholder="Speler 5">
-<input id="d3f2p2" placeholder="Speler 6">
-<input id="d3f2p3" placeholder="Speler 7">
-<input id="d3f2p4" placeholder="Speler 8">
+<input id="d3f2p1" data-key="d3f2p1" placeholder="Speler 5">
+<input id="d3f2p2" data-key="d3f2p2" placeholder="Speler 6">
+<input id="d3f2p3" data-key="d3f2p3" placeholder="Speler 7">
+<input id="d3f2p4" data-key="d3f2p4" placeholder="Speler 8">
 </div>
-
 <div class="flight">
 <b>⛳ 09:40 (Hole 1)</b><br>
-<input id="d3f3p1" placeholder="Speler 1">
-<input id="d3f3p2" placeholder="Speler 2">
-<input id="d3f3p3" placeholder="Speler 3">
-<input id="d3f3p4" placeholder="Speler 4">
+<input id="d3f3p1" data-key="d3f3p1" placeholder="Speler 1">
+<input id="d3f3p2" data-key="d3f3p2" placeholder="Speler 2">
+<input id="d3f3p3" data-key="d3f3p3" placeholder="Speler 3">
+<input id="d3f3p4" data-key="d3f3p4" placeholder="Speler 4">
 </div>
-
 <div class="flight">
 <b>⛳ 09:50 (Hole 1)</b><br>
-<input id="d3f4p1" placeholder="Speler 5">
-<input id="d3f4p2" placeholder="Speler 6">
-<input id="d3f4p3" placeholder="Speler 7">
-<input id="d3f4p4" placeholder="Speler 8">
+<input id="d3f4p1" data-key="d3f4p1" placeholder="Speler 5">
+<input id="d3f4p2" data-key="d3f4p2" placeholder="Speler 6">
+<input id="d3f4p3" data-key="d3f4p3" placeholder="Speler 7">
+<input id="d3f4p4" data-key="d3f4p4" placeholder="Speler 8">
 </div>
 
 <a href="index.html" class="back">⬅ Terug naar leaderboard</a>
-
 </div>
 
 <script>
-const inputs = document.querySelectorAll("input");
+// ============================================================
+// JSONBIN CONFIGURATIE — zelfde waarden als in index.html!
+// ============================================================
+const JSONBIN_API_KEY  = "$2a$10$myIOk23WvhXYSVTjfmUwN.AestPZIBRGdlSuB5dY9/aKx2VwdGFqi";
+const JSONBIN_BIN_ID   = "6a0b103eee5a733b12db7f78";
 
-inputs.forEach(function(input){
-  input.value = localStorage.getItem(input.id) || "";
+const JSONBIN_FLIGHTS_BIN_ID = "6a0b10646877513b27903c64";
+const JSONBIN_URL = `https://api.jsonbin.io/v3/b/${JSONBIN_FLIGHTS_BIN_ID}`;
 
-  input.addEventListener("input", function(){
-    localStorage.setItem(input.id, input.value);
+let saveTimeout = null;
+let isLoading   = false;
+
+function collectData() {
+  const data = {};
+  document.querySelectorAll("input[data-key]").forEach(input => {
+    data[input.dataset.key] = input.value;
+  });
+  return data;
+}
+
+function applyData(data) {
+  isLoading = true;
+  document.querySelectorAll("input[data-key]").forEach(input => {
+    const val = data[input.dataset.key];
+    if (val !== undefined) input.value = val;
+  });
+  isLoading = false;
+}
+
+async function loadFromCloud() {
+  try {
+    const res = await fetch(JSONBIN_URL + "/latest", {
+      headers: { "X-Master-Key": JSONBIN_API_KEY }
+    });
+    if (!res.ok) throw new Error(res.status);
+    const json = await res.json();
+    applyData(json.record || {});
+    setStatus("✅ Gesynchroniseerd");
+  } catch (e) {
+    setStatus("⚠️ Laden mislukt – controleer API key/Bin ID");
+    console.error("Load error:", e);
+  }
+}
+
+async function saveToCloud() {
+  try {
+    setStatus("💾 Opslaan...");
+    const res = await fetch(JSONBIN_URL, {
+      method:  "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Master-Key": JSONBIN_API_KEY
+      },
+      body: JSON.stringify(collectData())
+    });
+    if (!res.ok) throw new Error(res.status);
+    setStatus("✅ Opgeslagen");
+  } catch (e) {
+    setStatus("⚠️ Opslaan mislukt");
+    console.error("Save error:", e);
+  }
+}
+
+function setStatus(msg) {
+  document.getElementById("syncstatus").innerText = msg;
+}
+
+document.querySelectorAll("input[data-key]").forEach(input => {
+  input.addEventListener("input", () => {
+    if (isLoading) return;
+    clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(saveToCloud, 2000);
   });
 });
-</script>
 
+loadFromCloud();
+setInterval(loadFromCloud, 20000);
+</script>
 </body>
 </html>
-```
-
-

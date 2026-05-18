@@ -27,7 +27,7 @@ body{
 }
 
 .logo{
-  max-width:30%; /* logo veel kleiner */
+  max-width:30%;
   height:auto;
   margin-bottom:5px;
 }
@@ -137,6 +137,20 @@ button{
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
+/* Flights button */
+.flightbtn{
+  display:inline-block;
+  font-size:24px;
+  padding:12px 22px;
+  background:#FFD700;
+  color:#0b3d2e;
+  text-decoration:none;
+  border-radius:12px;
+  font-weight:bold;
+  border:2px solid white;
+  box-shadow:0 4px 10px rgba(0,0,0,0.4);
+}
+
 .qr{
   margin-top:40px;
   background:white;
@@ -150,6 +164,14 @@ button{
   margin-top:40px;
   font-size:12px;
   opacity:0.7;
+}
+
+/* Sync status indicator */
+#syncstatus{
+  font-size:12px;
+  margin-top:6px;
+  opacity:0.8;
+  min-height:16px;
 }
 
 /* Responsive adjustments */
@@ -183,70 +205,25 @@ button{
   }
 
   .footer{
-      margin-top:40px;
-      font-size:12px;
-      opacity:0.7;
-    }
-
-/* Flights button */
-.flightbtn{
-  display:inline-block;
-  font-size:28px;
-  padding:14px 26px;
-  background:#FFD700;
-  color:#0b3d2e;
-  text-decoration:none;
-  border-radius:14px;
-  font-weight:bold;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-  margin-top:10px;
-  border: 2px solid white;
-}
+    margin-top:40px;
+    font-size:12px;
+    opacity:0.7;
+  }
 }
 </style>
-  
 </head>
 
-<script>
-function savePlayers(){
-  localStorage.setItem("player1", document.getElementById("player1").value);
-  localStorage.setItem("player2", document.getElementById("player2").value);
-}
-
-// opslaan bij typen
-document.getElementById("player1").addEventListener("input", savePlayers);
-document.getElementById("player2").addEventListener("input", savePlayers);
-</script>
-  
 <body>
 
 <div class="topbar">
-
   <div class="toprow">
-
     <img src="logo.png" class="logo">
-
-<a href="flights.html" class="flightbtn" 
-   style="
-     font-size:24px;
-     padding:12px 22px;
-     background:#FFD700;
-     color:#0b3d2e;
-     border-radius:12px;
-     text-decoration:none;
-     font-weight:bold;
-     border:2px solid white;
-     box-shadow:0 4px 10px rgba(0,0,0,0.4);
-   ">
-  🏌️ Flights
-</a>
-    
+    <a href="flights.html" class="flightbtn">🏌️ Flights</a>
   </div>
-
-<h3 style="margin-top:10px;">8 spelers • 3 wedstrijddagen • 2026</h3>
-
+  <h3 style="margin-top:10px;">8 spelers • 3 wedstrijddagen • 2026</h3>
+  <div id="syncstatus">⏳ Gegevens laden...</div>
 </div>
-  
+
 <div class="container">
 
 <h2>Leaderboard</h2>
@@ -260,93 +237,168 @@ document.getElementById("player2").addEventListener("input", savePlayers);
 <th>Totaal</th>
 </tr>
 
-<tr><td class="rang"></td><td>Han</td><td><input type="number"></td><td><input type="number"></td><td><input type="number"></td><td class="total">0</td></tr>
-<tr><td class="rang"></td><td>Hans</td><td><input type="number"></td><td><input type="number"></td><td><input type="number"></td><td class="total">0</td></tr>
-<tr><td class="rang"></td><td>Johan</td><td><input type="number"></td><td><input type="number"></td><td><input type="number"></td><td class="total">0</td></tr>
-<tr><td class="rang"></td><td>Marian</td><td><input type="number"></td><td><input type="number"></td><td><input type="number"></td><td class="total">0</td></tr>
-<tr><td class="rang"></td><td>Carolien</td><td><input type="number"></td><td><input type="number"></td><td><input type="number"></td><td class="total">0</td></tr>
-<tr><td class="rang"></td><td>José</td><td><input type="number"></td><td><input type="number"></td><td><input type="number"></td><td class="total">0</td></tr>
-<tr><td class="rang"></td><td>Tonny Nijboer</td><td><input type="number"></td><td><input type="number"></td><td><input type="number"></td><td class="total">0</td></tr>
-<tr><td class="rang"></td><td>Jan Stuiver</td><td><input type="number"></td><td><input type="number"></td><td><input type="number"></td><td class="total">0</td></tr>
+<tr><td class="rang"></td><td>Han</td><td><input type="number" data-key="han_d1"></td><td><input type="number" data-key="han_d2"></td><td><input type="number" data-key="han_d3"></td><td class="total">0</td></tr>
+<tr><td class="rang"></td><td>Hans</td><td><input type="number" data-key="hans_d1"></td><td><input type="number" data-key="hans_d2"></td><td><input type="number" data-key="hans_d3"></td><td class="total">0</td></tr>
+<tr><td class="rang"></td><td>Johan</td><td><input type="number" data-key="johan_d1"></td><td><input type="number" data-key="johan_d2"></td><td><input type="number" data-key="johan_d3"></td><td class="total">0</td></tr>
+<tr><td class="rang"></td><td>Marian</td><td><input type="number" data-key="marian_d1"></td><td><input type="number" data-key="marian_d2"></td><td><input type="number" data-key="marian_d3"></td><td class="total">0</td></tr>
+<tr><td class="rang"></td><td>Carolien</td><td><input type="number" data-key="carolien_d1"></td><td><input type="number" data-key="carolien_d2"></td><td><input type="number" data-key="carolien_d3"></td><td class="total">0</td></tr>
+<tr><td class="rang"></td><td>José</td><td><input type="number" data-key="jose_d1"></td><td><input type="number" data-key="jose_d2"></td><td><input type="number" data-key="jose_d3"></td><td class="total">0</td></tr>
+<tr><td class="rang"></td><td>Tonny Nijboer</td><td><input type="number" data-key="tonny_d1"></td><td><input type="number" data-key="tonny_d2"></td><td><input type="number" data-key="tonny_d3"></td><td class="total">0</td></tr>
+<tr><td class="rang"></td><td>Jan Stuiver</td><td><input type="number" data-key="jan_d1"></td><td><input type="number" data-key="jan_d2"></td><td><input type="number" data-key="jan_d3"></td><td class="total">0</td></tr>
 </table>
 
 <h2 class="sectiontitle">⛳ Nearest to the Pin - Dag 1</h2>
 <table>
 <tr><th>Hole</th><th>Speler</th><th>Afstand (cm)</th></tr>
-<tr><td><input placeholder="bv. 5"></td><td><input></td><td><input type="number"></td></tr>
+<tr>
+  <td><input data-key="ntp1_hole" placeholder="bv. 5"></td>
+  <td><input data-key="ntp1_speler"></td>
+  <td><input type="number" data-key="ntp1_afstand"></td>
+</tr>
 </table>
 
 <h2 class="sectiontitle">⛳ Nearest to the Pin - Dag 2</h2>
 <table>
 <tr><th>Hole</th><th>Speler</th><th>Afstand (cm)</th></tr>
-<tr><td><input placeholder="bv. 7"></td><td><input></td><td><input type="number"></td></tr>
+<tr>
+  <td><input data-key="ntp2_hole" placeholder="bv. 7"></td>
+  <td><input data-key="ntp2_speler"></td>
+  <td><input type="number" data-key="ntp2_afstand"></td>
+</tr>
 </table>
 
 <h2 class="sectiontitle">⛳ Nearest to the Pin - Dag 3</h2>
 <table>
 <tr><th>Hole</th><th>Speler</th><th>Afstand (cm)</th></tr>
-<tr><td><input placeholder="bv. 12"></td><td><input></td><td><input type="number"></td></tr>
+<tr>
+  <td><input data-key="ntp3_hole" placeholder="bv. 12"></td>
+  <td><input data-key="ntp3_speler"></td>
+  <td><input type="number" data-key="ntp3_afstand"></td>
+</tr>
 </table>
 
-<audio id="muziek" src="schotland_muziek.mp3" loop autoplay></audio>
+<audio id="muziek" src="schotland_muziek.mp3" loop></audio>
 <button onclick="toggleMuziek()">🎵 Muziek aan/uit</button>
 
 <div class="footer">Tegenpartij Schotland Tour 2026</div>
 </div>
 
 <script>
-let timeout; // één timer voor alle inputs
-let inputs = document.querySelectorAll("#leaderboard input");
-inputs.forEach(input=>{
-    input.addEventListener("input", ()=>{
-        clearTimeout(timeout);      // reset de timer bij elke toets
-        timeout = setTimeout(update, 2000); // update 2000ms na laatste toets
-    });
-});
+// ============================================================
+// JSONBIN CONFIGURATIE
+// Stap 1: Ga naar https://jsonbin.io en maak een gratis account
+// Stap 2: Maak een nieuwe Bin aan met deze inhoud: {}
+// Stap 3: Vul hieronder jouw API key en Bin ID in
+// ============================================================
+const JSONBIN_API_KEY  = "$2a$10$myIOk23WvhXYSVTjfmUwN.AestPZIBRGdlSuB5dY9/aKx2VwdGFqi";
+const JSONBIN_BIN_ID   = "6a0b103eee5a733b12db7f78";
+const JSONBIN_URL      = `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`;
 
-function update(){
-  let rows = document.querySelectorAll("#leaderboard tr");
-  let data=[];
-  for(let i=1;i<rows.length;i++){
-    let inputs = rows[i].querySelectorAll("input");
-let total=0;
-inputs.forEach(input=>{
-    if(input.value !== "") {        // alleen bij niet-lege waarde
-        total += Number(input.value);
-    }
-});
-    rows[i].querySelector(".total").innerText=total;
-    let speler = rows[i].children[1].innerText;
-    data.push({row:rows[i], speler:speler, score:total});
-  }
-data.sort((a,b)=>b.score-a.score);
-  data.forEach((item,index)=>{
-    item.row.querySelector(".rang").innerText=index+1;
-    item.row.classList.remove("leader");
-    if(index===0){ item.row.classList.add("leader"); }
-    document.querySelector("#leaderboard").appendChild(item.row);
+let saveTimeout = null;
+let isLoading   = false;
+
+// ---- Lees alle input-waarden op in een object ----
+function collectData() {
+  const data = {};
+  document.querySelectorAll("input[data-key]").forEach(input => {
+    data[input.dataset.key] = input.value;
   });
-  save();
+  return data;
 }
 
-function save(){
-  let values=[];
-  document.querySelectorAll("input").forEach(input=>{ values.push(input.value); });
-  localStorage.setItem("scores",JSON.stringify(values));
-}
-
-function load(){
-  let values = JSON.parse(localStorage.getItem("scores"));
-  if(!values) return;
-  document.querySelectorAll("input").forEach((input,i)=>{ input.value = values[i]; });
+// ---- Schrijf een opgeslagen object terug naar de inputs ----
+function applyData(data) {
+  isLoading = true;
+  document.querySelectorAll("input[data-key]").forEach(input => {
+    const val = data[input.dataset.key];
+    if (val !== undefined) input.value = val;
+  });
+  isLoading = false;
   update();
 }
-load();
 
-function toggleMuziek(){
-  let audio = document.getElementById("muziek");
-  if(audio.paused){ audio.play(); }else{ audio.pause(); }
+// ---- Haal de nieuwste data op van JSONBin ----
+async function loadFromCloud() {
+  try {
+    const res = await fetch(JSONBIN_URL + "/latest", {
+      headers: { "X-Master-Key": JSONBIN_API_KEY }
+    });
+    if (!res.ok) throw new Error(res.status);
+    const json = await res.json();
+    applyData(json.record || {});
+    setStatus("✅ Gesynchroniseerd");
+  } catch (e) {
+    setStatus("⚠️ Laden mislukt – controleer API key/Bin ID");
+    console.error("Load error:", e);
+  }
 }
+
+// ---- Sla de huidige data op naar JSONBin ----
+async function saveToCloud() {
+  try {
+    setStatus("💾 Opslaan...");
+    const res = await fetch(JSONBIN_URL, {
+      method:  "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Master-Key": JSONBIN_API_KEY
+      },
+      body: JSON.stringify(collectData())
+    });
+    if (!res.ok) throw new Error(res.status);
+    setStatus("✅ Opgeslagen");
+  } catch (e) {
+    setStatus("⚠️ Opslaan mislukt");
+    console.error("Save error:", e);
+  }
+}
+
+function setStatus(msg) {
+  document.getElementById("syncstatus").innerText = msg;
+}
+
+// ---- Leaderboard berekenen en sorteren ----
+function update() {
+  const rows = document.querySelectorAll("#leaderboard tr");
+  const data = [];
+  for (let i = 1; i < rows.length; i++) {
+    const inputs = rows[i].querySelectorAll("input");
+    let total = 0;
+    inputs.forEach(input => {
+      if (input.value !== "") total += Number(input.value);
+    });
+    rows[i].querySelector(".total").innerText = total;
+    const speler = rows[i].children[1].innerText;
+    data.push({ row: rows[i], speler: speler, score: total });
+  }
+  data.sort((a, b) => b.score - a.score);
+  data.forEach((item, index) => {
+    item.row.querySelector(".rang").innerText = index + 1;
+    item.row.classList.remove("leader");
+    if (index === 0) item.row.classList.add("leader");
+    document.querySelector("#leaderboard").appendChild(item.row);
+  });
+}
+
+// ---- Event listeners: sla op na 2 seconden stilte ----
+document.querySelectorAll("input[data-key]").forEach(input => {
+  input.addEventListener("input", () => {
+    if (isLoading) return;
+    update();
+    clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(saveToCloud, 2000);
+  });
+});
+
+// ---- Muziek ----
+function toggleMuziek() {
+  const audio = document.getElementById("muziek");
+  if (audio.paused) { audio.play(); } else { audio.pause(); }
+}
+
+// ---- Opstarten: laad data en herlaad elke 20 seconden ----
+loadFromCloud();
+setInterval(loadFromCloud, 20000);
 </script>
 
 </body>
